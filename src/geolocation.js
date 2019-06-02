@@ -2,10 +2,19 @@ import React from 'react';
 
 
 export class Geo extends React.Component {
-    /*constructor(props) {
+    constructor(props) {
         super(props)
-    }*/
 
+        this.state = {
+            latitude: null,
+            longitude: null
+        }
+        this.handleGetGeoClick = this.handleGetGeoClick.bind(this);
+    }
+
+    handleGetGeoClick() {
+        this.getGeo()   
+    }
     getGeo() {
         let getPosition = function (options) {
             return new Promise(function (resolve, reject) {
@@ -13,24 +22,33 @@ export class Geo extends React.Component {
             });
         }
           
-        getPosition()
-            .then((position) => {
-              console.log(position);
-            })
-            .catch((err) => {
-              console.error(err.message);
+    getPosition()
+        .then((position) => {
+            this.coords = position
+            return this.coords
+        })
+        .catch((err) => {
+            alert(err.message);
+        })
+        .then((coords) => { 
+            this.setState({ latitude: coords.coords.latitude, longitude: coords.coords.longitude  })
+            console.log(this.state)
+            return this.coords 
         });
     }
 
-
-
     render() {
         return ( 
-        <div>
-           <button onClick={this.getGeo}>
-                Get coords
-            </button>
+        <div className="geoButton">
+            <button className="geoButton-btn btn btn-primary btn-lg active" aria-pressed="true" onClick={this.handleGetGeoClick}>
+                    Get coords
+            </button> 
+            <div > 
+                Your latitude is:  {this.state.latitude ? this.state.latitude : '0.0'} ;     
+                Your longitude is:  {this.state.longitude ? this.state.longitude : '0.0'}
+            </div>
         </div>
+        
         )
     }
 
