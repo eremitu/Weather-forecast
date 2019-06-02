@@ -4,17 +4,35 @@ import {Geo}  from './geolocation'
 import {DataService} from './dataService'
 
 
+
 export class App extends React.Component {
 
+constructor(props) {
+    super(props)
+    this.state = {
+        latitude: null,
+        longitude: null
+    }
 
+
+    setTimeout(()=> {console.log(this.state)}, 1210)
+
+ }   
+    loadPosition = (latitude, longitude) => {
+         this.setState({
+            latitude,
+            longitude
+        })
+    }
 
 
     render() {
         return (
             <div>
-                <Geo />
-                <DataService />
-                <h1>Hello wrld</h1>
+                <Geo liftingData={this.loadPosition}/>
+                <DataService 
+                     props={this.state}
+                />              
             </div>
         )
     }

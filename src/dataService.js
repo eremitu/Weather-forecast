@@ -1,6 +1,6 @@
 import React from 'react';
-import axios from 'axios';
 import {APIkey} from './const.js'
+
 
 
 export class DataService extends React.Component {
@@ -11,33 +11,32 @@ export class DataService extends React.Component {
             isLoaded: false,
             items: [],
         };
+        this.componentDidMount = this.componentDidMount.bind(this);
+        setTimeout(()=> {console.log(this.props.props.latitude)}, 1120)
+    }
+
+   componentDidMount() {
         /*let data = {
             lat: 51.1491281,
             lon: 17.1071266
-        }
-        this.data = data*/
-        this.componentDidMount = this.componentDidMount.bind(this);
-
-
-    }
-
-    componentDidMount() {
-        let data = {
-            lat: 51.1491281,
-            lon: 17.1071266
-        }
-
-        
-        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${data.lat}&lon=${data.lon}&appid=${APIkey}`)
-      .then(res => res.json())
-      .then(
-        (result) => {
-            console.log(result)
-          this.setState({
-            isLoaded: true,
-            items: result
-          });
-        },
+        }*/
+         new Promise( async (resolve) => {
+           await setTimeout(()=>{resolve(this.props)}, 1000)    //setTimeout(()=>{resolve(this.props)}, 1000)
+          })
+            .then ( 
+                async () => {
+                    await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.props.props.latitude}&lon=${this.props.props.longitude}&appid=${APIkey}`)
+                }
+            )
+            .then( async (res) => await res.json() )  
+            .then(
+               async (result) => {
+                    console.log(result)
+                   await this.setState({
+                        isLoaded: true,
+                        items: result
+                    });
+                },
         (error) => {
           this.setState({
             isLoaded: true,
@@ -46,10 +45,7 @@ export class DataService extends React.Component {
         }
       )
 
-
-
-        //getData(data)
-
+        
     }
 
     render() {
@@ -61,16 +57,19 @@ export class DataService extends React.Component {
         if (error) {
             return <div>Error: {error.message}</div>;
           } else if (!isLoaded) {
-            return <div>Loading...</div>;
+            return (
+            <div className="text-center">
+                <div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>
+            </div>);
           } else {
             return (
-              <ul>
-                {items.map(item => (
-                  <li key={item.name}>
-                    
-                  </li>
-                ))}
-              </ul>
+                <div className="container-fluid data">
+                    You are in {items.name}.
+                    Temperature now is {items.main.temp} F
+                    Athmospheric pressure is {items.main.pressure} mbar 
+                </div>
             );
           }
 

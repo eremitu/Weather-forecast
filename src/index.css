@@ -1,12 +1,16 @@
 .container-fluid {
-    background: rgb(172, 27, 172)
+    background: rgb(72, 217, 243)
 }
 
 .geoButton {
-    margin : 100px 35% 10px 35%
+    margin : 50px;
+    text-align: center
 }
 
 .geoButton-btn {
-    margin : 100px 25% 10px
-    
+    margin : 100px 25% 10px;
+    text-align: center
 }
+ .data{
+     text-align: center
+ }
