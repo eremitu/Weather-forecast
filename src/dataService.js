@@ -14,9 +14,6 @@ export class DataService extends React.Component {
       items: [],
     };
     this.componentDidMount = this.componentDidMount.bind(this);
-    setTimeout(() => {
-      console.log(this.props.props)
-    }, 1120)
   }
 
   componentDidMount() {
@@ -46,10 +43,6 @@ export class DataService extends React.Component {
             )
         }
       )
-    // lat=${this.props.props.latitude}&lon=${this.props.props.longitude}
-
-
-
   }
 
   render() {

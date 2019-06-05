@@ -14,9 +14,6 @@ constructor(props) {
         longitude: null
     }
 
-
-    setTimeout(()=> {console.log(this.state)}, 1210)
-
  }   
     loadPosition = (latitude, longitude) => {
          this.setState({
