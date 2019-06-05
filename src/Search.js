@@ -13,34 +13,17 @@ constructor (props) {
 
 handleSubmit(event){
     event.preventDefault();
-    console.log(this.state); // your function here
+    console.log(this.state.input);
+    this.props.liftingData(this.state.input);
+
+
+    
     }
 
 
 handleChange(event) {
     this.setState({input: event.target.value})
-    console.log(this.state)
 }
-
-preventDef(event) {
-    event.preventDefault()
-}
-
-debounce(f, ms) {
-    let timer = null;  
-    return function (...args) {
-      const onComplete = () => {
-        f.apply(this, args);
-        timer = null;
-      }  
-      if (timer) {
-        clearTimeout(timer);
-      }  
-      timer = setTimeout(onComplete, ms);
-    };
-}
-
-
 
 
     render() {

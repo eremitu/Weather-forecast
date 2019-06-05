@@ -7,15 +7,25 @@ import {Search} from './Search'
 
 
 export class App extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            latitude: null,
+            longitude: null,
+            input: '',
+        }
 
-constructor(props) {
-    super(props)
-    this.state = {
-        latitude: null,
-        longitude: null
+    }
+    
+    
+    getInput = (input) => {
+        this.setState({
+            input
+        })
+        console.log('input is in APP')
     }
 
- }   
+
     loadPosition = (latitude, longitude) => {
          this.setState({
             latitude,
@@ -31,7 +41,7 @@ constructor(props) {
                 <DataService 
                      props={this.state}
                 />
-                <Search />              
+                <Search liftingData={this.getInput}/>              
             </div>
         )
     }
