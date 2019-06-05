@@ -2,6 +2,7 @@ import React from 'react';
 //import ReactDOM from 'react-dom'
 import {Geo}  from './geolocation'
 import {DataService} from './dataService'
+import {Search} from './Search'
 
 
 
@@ -29,7 +30,8 @@ constructor(props) {
                 <Geo liftingData={this.loadPosition}/>
                 <DataService 
                      props={this.state}
-                />              
+                />
+                <Search />              
             </div>
         )
     }
