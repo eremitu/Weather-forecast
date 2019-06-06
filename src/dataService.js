@@ -109,6 +109,5 @@ export class DataService extends React.Component {
           </div> 
       );
     }
-
   }
 }
