@@ -22,26 +22,26 @@ export class Geo extends React.Component {
             });
         }
           
-        getPosition()
-            .then((position) => {
-                this.coords = position
-                return this.coords
-            })
-            .catch((err) => {
-                alert(err.message);
-            })
-            .then((coords) => { 
-                this.setState({ latitude: coords.coords.latitude, longitude: coords.coords.longitude},
-                    ()=>this.props.liftingData(this.state.latitude, this.state.longitude))
-                return this.coords 
-            });
+    getPosition()
+        .then((position) => {
+            this.coords = position
+            return this.coords
+        })
+        .catch((err) => {
+            alert(err.message);
+        })
+        .then((coords) => { 
+            this.setState({ latitude: coords.coords.latitude, longitude: coords.coords.longitude},
+                ()=>this.props.liftingData(this.state.latitude, this.state.longitude))
+            return this.coords 
+        });
 
 
     }
 
     render() {
-
         return (
+            
         <div className="geoButton">
             <button className="geoButton-btn btn btn-primary btn-lg active" aria-pressed="true" onClick={this.handleGetGeoClick()}>
                     Get coords

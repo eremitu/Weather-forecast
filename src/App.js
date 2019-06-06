@@ -26,7 +26,7 @@ export class App extends React.Component {
     }
 
 
-    loadPosition = (latitude, longitude) => {
+    getPosition = (latitude, longitude) => {
          this.setState({
             latitude,
             longitude
@@ -37,7 +37,7 @@ export class App extends React.Component {
     render() {
         return (
             <div>
-                <Geo liftingData={this.loadPosition}/>
+                <Geo liftingData={this.getPosition}/>
                 <DataService 
                      props={this.state}
                 />
