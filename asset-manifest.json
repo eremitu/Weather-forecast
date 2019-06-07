@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/eremitu.github.io/static/css/main.db9886bb.chunk.css",
-    "main.js": "/eremitu.github.io/static/js/main.491c56fe.chunk.js",
-    "main.js.map": "/eremitu.github.io/static/js/main.491c56fe.chunk.js.map",
-    "runtime~main.js": "/eremitu.github.io/static/js/runtime~main.998229b4.js",
-    "runtime~main.js.map": "/eremitu.github.io/static/js/runtime~main.998229b4.js.map",
-    "static/js/2.0073b18d.chunk.js": "/eremitu.github.io/static/js/2.0073b18d.chunk.js",
-    "static/js/2.0073b18d.chunk.js.map": "/eremitu.github.io/static/js/2.0073b18d.chunk.js.map",
-    "index.html": "/eremitu.github.io/index.html",
-    "precache-manifest.f34addb6d5fcbdbe766aefbbf7cfd9db.js": "/eremitu.github.io/precache-manifest.f34addb6d5fcbdbe766aefbbf7cfd9db.js",
-    "service-worker.js": "/eremitu.github.io/service-worker.js",
-    "static/css/main.db9886bb.chunk.css.map": "/eremitu.github.io/static/css/main.db9886bb.chunk.css.map"
+    "main.css": "/Weather-forecast/static/css/main.db9886bb.chunk.css",
+    "main.js": "/Weather-forecast/static/js/main.491c56fe.chunk.js",
+    "main.js.map": "/Weather-forecast/static/js/main.491c56fe.chunk.js.map",
+    "runtime~main.js": "/Weather-forecast/static/js/runtime~main.75bda934.js",
+    "runtime~main.js.map": "/Weather-forecast/static/js/runtime~main.75bda934.js.map",
+    "static/js/2.0073b18d.chunk.js": "/Weather-forecast/static/js/2.0073b18d.chunk.js",
+    "static/js/2.0073b18d.chunk.js.map": "/Weather-forecast/static/js/2.0073b18d.chunk.js.map",
+    "index.html": "/Weather-forecast/index.html",
+    "precache-manifest.ea0791dbbcde3a51105023a687d02358.js": "/Weather-forecast/precache-manifest.ea0791dbbcde3a51105023a687d02358.js",
+    "service-worker.js": "/Weather-forecast/service-worker.js",
+    "static/css/main.db9886bb.chunk.css.map": "/Weather-forecast/static/css/main.db9886bb.chunk.css.map"
   }
 }
