@@ -15,9 +15,6 @@ handleSubmit(event){
     event.preventDefault();
     console.log(this.state.input);
     this.props.liftingData(this.state.input);
-
-
-    
     }
 
 
