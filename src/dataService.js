@@ -13,21 +13,21 @@ export class DataService extends React.Component {
       items: [],
       input: '',
     };
-    this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.props.input !== prevProps.props.input) {
-      console.log("АСТАНАВИСЬ")
       this.search()
+    }
+
+    if(this.props.props.latitude !== prevProps.props.latitude) {
+      this.getForecastByCoords()
     }
   }
 
-  componentDidMount() {
+  getForecastByCoords() {
     new Promise(async (resolve) => {
-      await setTimeout(() => {
-        resolve(this.props)
-      }, 1000)
+      await resolve(this.props)
     })
     .then(
       async () => {

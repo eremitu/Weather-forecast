@@ -22,7 +22,6 @@ export class App extends React.Component {
         this.setState({
             input
         })
-        console.log('input is in APP')
     }
 
 
