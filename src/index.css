@@ -1,6 +1,6 @@
 body, html {
     height: 100%;
-    background-image: url("https://cdn.pixabay.com/photo/2017/05/20/20/22/clouds-2329680_960_720.jpg");
+    background-image: url("https://images.pexels.com/photos/875858/pexels-photo-875858.png?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=750&w=1260");
     height: 100vh;
     background-position: center;
     background-repeat: no-repeat;
@@ -63,8 +63,8 @@ body, html {
 .card-deck {
     position: relative;
     margin: 10px;
-    margin-left: 2%;
-    margin-right: 2%;
+    margin-left: 3%;
+    margin-right: 3%;
 
     text-align: center;
     

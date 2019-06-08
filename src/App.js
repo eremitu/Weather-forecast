@@ -15,20 +15,7 @@ export class App extends React.Component {
             input: '',
             day: true,
         }
-
-
-        let imgUrl = 'https://images.pexels.com/photos/176851/pexels-photo-176851.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=750&w=1260'
-        let styles = {         
-                backgroundImage: 'url(' + imgUrl + ')',
-                backgroundImage: {
-                    flex: 1,
-                    resizeMode: 'cover', // or 'stretch'
-                },
-
-
-            }
-        this.styles=styles
-        
+ 
     }
     
     getInput = (input) => {
@@ -52,7 +39,7 @@ export class App extends React.Component {
 
     render() {
         return (
-            <div style={this.styles}>
+            <div >
                 <DayNightButton isDay={this.getTimeOfDay}/>
                 <Geo liftingData={this.getPosition}/>
                 <Search liftingData={this.getInput}/>
