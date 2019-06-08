@@ -14,11 +14,9 @@ export class Search extends React.Component {
         this.props.liftingData(this.state.input);
     }
 
-
     handleChange(event) {
         this.setState({input: event.target.value})
     }
-
 
     render() {
         return (

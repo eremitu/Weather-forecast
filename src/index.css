@@ -1,11 +1,23 @@
+body, html {
+    height: 100%;
+    background-image: url("https://cdn.pixabay.com/photo/2017/05/20/20/22/clouds-2329680_960_720.jpg");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
 .container-fluid {
     background: rgb(72, 217, 243);
     margin : 0 0 10px 0;
+    color: white;
 }
 
 .geoButton {
     margin : 50px;
-    text-align: center
+    text-align: center;
+    color: white;
 }
 
 .geoButton-btn {
@@ -18,10 +30,11 @@
 }
 
 .searchButton{
-    position: absolute;
+    position: relative;
     color: black;
     background-color: rgb(72, 217, 243);
-    margin : 0 0 0 67%;
+    margin : 0 0 0 112%;
+    
 }
 
 .form-group {
@@ -36,4 +49,34 @@
 
 #searchBar {
     margin : 0 40% 0 0;
+    color: white;
+}
+
+
+.card {
+    width: 222px;
+    height: 300px;
+    margin: 5px;
+
+}
+
+.card-deck {
+    position: relative;
+    margin: 10px;
+    margin-left: 2%;
+    margin-right: 2%;
+
+    text-align: center;
+    
+}
+
+.cityName {
+    text-align: center;
+    margin-top: 15px;
+    color: white;
+}
+
+.card-img-top {
+    width: 220px;
+    height: 150px;
 }

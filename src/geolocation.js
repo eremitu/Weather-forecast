@@ -35,13 +35,10 @@ export class Geo extends React.Component {
                 ()=>this.props.liftingData(this.state.latitude, this.state.longitude))
             return this.coords 
         });
-
-
     }
 
     render() {
         return (
-            
         <div className="geoButton">             
             <div onLoad={this.handleGetGeoClick()}> 
                 Your latitude is:  {this.state.latitude ? this.state.latitude : '0.0'} ;     

@@ -3,7 +3,7 @@ import React from 'react';
 import {Geo}  from './geolocation'
 import {DataService} from './dataService'
 import {Search} from './Search'
-
+import {DayNightButton} from './dayNightButton'
 
 
 export class App extends React.Component {
@@ -13,10 +13,23 @@ export class App extends React.Component {
             latitude: null,
             longitude: null,
             input: '',
+            day: true,
         }
 
+
+        let imgUrl = 'https://images.pexels.com/photos/176851/pexels-photo-176851.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=750&w=1260'
+        let styles = {         
+                backgroundImage: 'url(' + imgUrl + ')',
+                backgroundImage: {
+                    flex: 1,
+                    resizeMode: 'cover', // or 'stretch'
+                },
+
+
+            }
+        this.styles=styles
+        
     }
-    
     
     getInput = (input) => {
         this.setState({
@@ -24,6 +37,11 @@ export class App extends React.Component {
         })
     }
 
+    getTimeOfDay = (day) => {
+        this.setState({
+            day
+        })
+    }
 
     getPosition = (latitude, longitude) => {
          this.setState({
@@ -32,19 +50,19 @@ export class App extends React.Component {
         })
     }
 
-
     render() {
         return (
-            <div>
+            <div style={this.styles}>
+                <DayNightButton isDay={this.getTimeOfDay}/>
                 <Geo liftingData={this.getPosition}/>
+                <Search liftingData={this.getInput}/>
                 <DataService 
                      props={this.state}
                 />
-                <Search liftingData={this.getInput}/>              
+                              
             </div>
         )
     }
-
 }
 
 
