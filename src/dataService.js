@@ -138,7 +138,7 @@ export class DataService extends React.Component {
             <div className="card-body">
               <div className="card-text">
                 <div>{item.dt_txt.slice(0,10)}</div>
-                <div>{item.dt_txt.slice(11) === "12:00:00" ? "Day weather" : "Night weather"}</div>
+                <div>{item.weather[0].description}</div>
                 <div>Temperature is {item.main.temp} F </div>
                 <div>Athmospheric pressure is {item.main.pressure} mbar </div>
               </div>

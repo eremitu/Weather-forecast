@@ -57,8 +57,13 @@ body, html {
     width: 222px;
     height: 300px;
     margin: 5px;
+    transition: box-shadow .3s;
 
 }
+
+.card:hover {
+    box-shadow: 0 0 50px rgba(33,33,33,.2); 
+  }
 
 .card-deck {
     position: relative;
