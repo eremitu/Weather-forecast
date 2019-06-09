@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Weather-forecast/static/css/main.b7796bc5.chunk.css",
-    "main.js": "/Weather-forecast/static/js/main.f8a3bd12.chunk.js",
-    "main.js.map": "/Weather-forecast/static/js/main.f8a3bd12.chunk.js.map",
+    "main.css": "/Weather-forecast/static/css/main.91f1d98e.chunk.css",
+    "main.js": "/Weather-forecast/static/js/main.0186a3a6.chunk.js",
+    "main.js.map": "/Weather-forecast/static/js/main.0186a3a6.chunk.js.map",
     "runtime~main.js": "/Weather-forecast/static/js/runtime~main.75bda934.js",
     "runtime~main.js.map": "/Weather-forecast/static/js/runtime~main.75bda934.js.map",
     "static/js/2.0073b18d.chunk.js": "/Weather-forecast/static/js/2.0073b18d.chunk.js",
     "static/js/2.0073b18d.chunk.js.map": "/Weather-forecast/static/js/2.0073b18d.chunk.js.map",
     "index.html": "/Weather-forecast/index.html",
-    "precache-manifest.2ce5490f601a745f1efc7c10ad1a1836.js": "/Weather-forecast/precache-manifest.2ce5490f601a745f1efc7c10ad1a1836.js",
+    "precache-manifest.a81884c27e36e63321e52a4dc6d59da1.js": "/Weather-forecast/precache-manifest.a81884c27e36e63321e52a4dc6d59da1.js",
     "service-worker.js": "/Weather-forecast/service-worker.js",
-    "static/css/main.b7796bc5.chunk.css.map": "/Weather-forecast/static/css/main.b7796bc5.chunk.css.map"
+    "static/css/main.91f1d98e.chunk.css.map": "/Weather-forecast/static/css/main.91f1d98e.chunk.css.map"
   }
 }
