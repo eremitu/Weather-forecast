@@ -2,26 +2,21 @@ import React from 'react';
 
 
 export class Search extends React.Component {
-constructor (props) {
-    super(props)
-
-    this.state = {
-        input: '',
-    }
-
+    constructor (props) {
+        super(props)
+        this.state = {
+            input: '',
+        }
 }
 
-handleSubmit(event){
-    event.preventDefault();
-    console.log(this.state.input);
-    this.props.liftingData(this.state.input);
+    handleSubmit(event){
+        event.preventDefault();
+        this.props.liftingData(this.state.input);
     }
 
-
-handleChange(event) {
-    this.setState({input: event.target.value})
-}
-
+    handleChange(event) {
+        this.setState({input: event.target.value})
+    }
 
     render() {
         return (

@@ -3,7 +3,7 @@ import React from 'react';
 import {Geo}  from './geolocation'
 import {DataService} from './dataService'
 import {Search} from './Search'
-
+import {DayNightButton} from './dayNightButton'
 
 
 export class App extends React.Component {
@@ -13,18 +13,22 @@ export class App extends React.Component {
             latitude: null,
             longitude: null,
             input: '',
+            day: true,
         }
-
+ 
     }
-    
     
     getInput = (input) => {
         this.setState({
             input
         })
-        console.log('input is in APP')
     }
 
+    getTimeOfDay = (day) => {
+        this.setState({
+            day
+        })
+    }
 
     getPosition = (latitude, longitude) => {
          this.setState({
@@ -33,19 +37,19 @@ export class App extends React.Component {
         })
     }
 
-
     render() {
         return (
-            <div>
+            <div >
+                <DayNightButton isDay={this.getTimeOfDay}/>
                 <Geo liftingData={this.getPosition}/>
+                <Search liftingData={this.getInput}/>
                 <DataService 
                      props={this.state}
                 />
-                <Search liftingData={this.getInput}/>              
+                              
             </div>
         )
     }
-
 }
 
 
