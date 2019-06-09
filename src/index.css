@@ -8,6 +8,7 @@ body, html {
 }
 
 
+
 .container-fluid {
     background: rgb(72, 217, 243);
     margin : 0 0 10px 0;
@@ -84,4 +85,18 @@ body, html {
 .card-img-top {
     width: 220px;
     height: 150px;
+}
+
+
+#nightButton {
+    background: rgb(68, 4, 105);
+    color: rgb(8, 218, 255);
+    margin: 10px;
+    width: 130px ;
+    
+}
+
+#dayButton {
+    width: 130px ;
+    margin: 10px  
 }

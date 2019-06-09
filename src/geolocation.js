@@ -41,8 +41,8 @@ export class Geo extends React.Component {
         return (
         <div className="geoButton">             
             <div onLoad={this.handleGetGeoClick()}> 
-                Your latitude is:  {this.state.latitude ? this.state.latitude : '0.0'} ;     
-                Your longitude is:  {this.state.longitude ? this.state.longitude : '0.0'}
+                Your coordinates are: latitude {this.state.latitude ? this.state.latitude : '0.0'} ; longitude   {this.state.longitude ? this.state.longitude : '0.0'} 
+                
             </div>
         </div>
         
