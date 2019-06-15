@@ -8,14 +8,15 @@ export class DataService extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null,
+      error: false,
+      responseStatus: null,
       isLoaded: false,
       items: [],
       input: '',
       day: true,
+      locationUndefined: null,
     };
   }
-
 
   componentDidUpdate(prevProps) {
     if (this.props.props.input !== prevProps.props.input) {
@@ -32,29 +33,48 @@ export class DataService extends React.Component {
   }
 
   getForecastByCoords() {
+    
     new Promise(async (resolve) => {
       await resolve(this.props)
     })
     .then(
       async () => {
-        await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${this.props.props.latitude}&lon=${this.props.props.longitude}&appid=${APIkey}`)
-        .then(async (res) => await res.json())
-        .then(
-          (result) => {
+         let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${this.props.props.latitude}&lon=${this.props.props.longitude}&appid=${APIkey}`)
+
+          if(response.ok) {
+
+            let result = await response.json()
+            //console.log(result)
             this.setState({
-              isLoaded: true,
-              items: result
+                     isLoaded: true,
+                     items: result
             });
-          },
-          (error) => {
-            this.setState({
-              isLoaded: true,
-              error
-            });
+
           }
-        )
+          else {
+            this.setState({
+              isLoaded: true,
+              error: true,
+              response: response.status
+          });
+            //console.log("HTTP-Error: " + response.status);
+          }
       }
     )
+    .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+          });
+        },
+        (error) => {
+          //console.log(error)
+          this.setState({
+            isLoaded: true,
+            error: true
+          });
+        }
+      )
   }
 
   search() {
@@ -75,9 +95,10 @@ export class DataService extends React.Component {
             });
           },
           (error) => {
+            //console.log(error)
             this.setState({
               isLoaded: true,
-              error
+              error: true
             });
           }
         )
@@ -157,10 +178,9 @@ export class DataService extends React.Component {
   render() {
     const {
       isLoaded,
-      items,
     } = this.state;
-    if (this.state.error != null) {
-      return <div className="container-fluid data text-center">API Server is not responding </div>;
+    if (this.state.error) {
+      return <div className="container-fluid data text-center">API Server is not responding or unable to get your GeoLocation </div>;
     } else if (!isLoaded) {
       return (
       <div className="text-center">
@@ -168,7 +188,7 @@ export class DataService extends React.Component {
               <span className="sr-only">Loading...</span>
           </div>
       </div>);
-    } else if (!(_.isUndefined(items))) {
+    } else if (!this.state.error) {
         return (
           <div>
             <h4 className="cityName">

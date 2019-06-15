@@ -28,12 +28,21 @@ export class Geo extends React.Component {
             return this.coords
         })
         .catch((err) => {
-            alert(err.message);
+            this.setState({ latitude: 0.0, longitude: 0.0},//!!!
+                ()=>this.props.liftingData(this.state.latitude, this.state.longitude))//!!!
+            return this.coords //!!!
         })
         .then((coords) => { 
-            this.setState({ latitude: coords.coords.latitude, longitude: coords.coords.longitude},
-                ()=>this.props.liftingData(this.state.latitude, this.state.longitude))
-            return this.coords 
+            if(!!coords){
+                this.setState({ latitude: coords.coords.latitude, longitude: coords.coords.longitude},
+                    ()=>this.props.liftingData(this.state.latitude, this.state.longitude))
+                return this.coords 
+            }
+            else {
+                this.setState({ latitude: 0.0, longitude: 0.0},//!!!
+                    ()=>this.props.liftingData(this.state.latitude, this.state.longitude)) //!!!
+                return this.coords //!!!
+            }
         });
     }
 
