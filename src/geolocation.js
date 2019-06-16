@@ -6,57 +6,62 @@ export class Geo extends React.Component {
         super(props)
         this.state = {
             latitude: null,
-            longitude: null
+            longitude: null,
+            error: null,
+            locationUndefined: null,
+            isLoaded: null,
         }
-        this.handleGetGeoClick = this.handleGetGeoClick.bind(this);
+
     }
 
-    handleGetGeoClick() {
-        this.getGeo()    
+    componentDidMount() {
+        this.getGeo()
     }
 
     getGeo() {
-        let getPosition = function (options) {
             return new Promise((resolve, reject) => {
-              navigator.geolocation.getCurrentPosition(resolve, reject, options);
-            });
+                navigator.geolocation.getCurrentPosition(
+                    position => {
+                        resolve(
+                            this.setState({
+                                latitude: position.coords.latitude,
+                                longitude: position.coords.longitude,
+                                locationUndefined: false
+                            },
+                                () => this.props.liftingData(this.state.latitude, this.state.longitude, this.state.locationUndefined)
+                            )
+                        )
+                    },
+                    error => {
+                        reject(
+                            this.setState({
+                                error: error.message,
+                                isLoaded: true,
+                                locationUndefined: true,
+                            },
+                            () => this.props.liftingData(this.error, this.isLoaded, this.state.locationUndefined)
+                            )
+                        )
+                    }
+                );
+            }).catch(error => error);
         }
-          
-    getPosition()
-        .then((position) => {
-            this.coords = position
-            return this.coords
-        })
-        .catch((err) => {
-            this.setState({ latitude: 0.0, longitude: 0.0},//!!!
-                ()=>this.props.liftingData(this.state.latitude, this.state.longitude))//!!!
-            return this.coords //!!!
-        })
-        .then((coords) => { 
-            if(!!coords){
-                this.setState({ latitude: coords.coords.latitude, longitude: coords.coords.longitude},
-                    ()=>this.props.liftingData(this.state.latitude, this.state.longitude))
-                return this.coords 
-            }
-            else {
-                this.setState({ latitude: 0.0, longitude: 0.0},//!!!
-                    ()=>this.props.liftingData(this.state.latitude, this.state.longitude)) //!!!
-                return this.coords //!!!
-            }
-        });
-    }
+
+    
 
     render() {
-        return (
-        <div className="geoButton">             
-            <div onLoad={this.handleGetGeoClick()}> 
-                Your coordinates are: latitude {this.state.latitude ? this.state.latitude : '0.0'} ; longitude   {this.state.longitude ? this.state.longitude : '0.0'} 
-                
-            </div>
-        </div>
-        
+        return ( 
+        <div className = "geoButton" >
+            <div > 
+                {
+                this.state.error ? ' ' :
+                    ('Your coordinates are: latitude:' +
+                    this.state.latitude +
+                    '; longitude   ' +
+                    this.state.longitude)
+                } 
+            </div> 
+        </div>  
         )
     }
-
-
 }
