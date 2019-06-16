@@ -14,8 +14,9 @@ export class App extends React.Component {
             longitude: null,
             input: '',
             day: true,
+            locationUndefined: null,
+            isLoaded: true,
         }
- 
     }
     
     getInput = (input) => {
@@ -30,10 +31,12 @@ export class App extends React.Component {
         })
     }
 
-    getPosition = (latitude, longitude) => {
+    getPosition = (latitude, longitude, isLoaded, locationUndefined) => {
          this.setState({
             latitude,
-            longitude
+            longitude,
+            locationUndefined: locationUndefined,
+            isLoaded,
         })
     }
 

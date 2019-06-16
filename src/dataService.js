@@ -1,31 +1,28 @@
 import React from 'react';
 import {APIkey} from './const.js'
-import _ from 'lodash';
-
 
 
 export class DataService extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null,
+      error: false,
+      responseStatus: null,
       isLoaded: false,
       items: [],
       input: '',
       day: true,
+       locationUndefined: null,
     };
   }
-
 
   componentDidUpdate(prevProps) {
     if (this.props.props.input !== prevProps.props.input) {
       this.search()
     }
-
     if(this.props.props.latitude !== prevProps.props.latitude) {
       this.getForecastByCoords()
     }
-
     if(this.props.props.day !== prevProps.props.day) {
       this.renderForecast()
     }
@@ -37,52 +34,76 @@ export class DataService extends React.Component {
     })
     .then(
       async () => {
-        await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${this.props.props.latitude}&lon=${this.props.props.longitude}&appid=${APIkey}`)
-        .then(async (res) => await res.json())
-        .then(
-          (result) => {
+         let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${this.props.props.latitude}&lon=${this.props.props.longitude}&appid=${APIkey}`)
+          if(response.ok) {
+            let result = await response.json()
             this.setState({
               isLoaded: true,
               items: result
             });
-          },
-          (error) => {
+          }
+          else {
             this.setState({
               isLoaded: true,
-              error
+              error: response.status,
+              response: response.status
             });
           }
-        )
       }
     )
+    .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+          });
+        },
+        (error) => {
+
+          this.setState({
+            isLoaded: true,
+            error: error
+          });
+        }
+      )
   }
 
   search() {
     new Promise(async (resolve) => {
-        await setTimeout(() => {
-          resolve(this.props)
-        }, 1000)
+      await resolve(this.props)
     })
     .then(
       async () => {
-        await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${this.props.props.input}&appid=${APIkey}`)
-        .then(async (res) => await res.json())
-        .then(
-          (result) => {
+         let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${this.props.props.input}&appid=${APIkey}`)
+          if(response.ok) {
+            let result = await response.json()
+            console.log(result)
             this.setState({
               isLoaded: true,
               items: result
             });
-          },
-          (error) => {
+          }
+          else {
             this.setState({
               isLoaded: true,
-              error
+              error: response.status,
+              response: response.status
             });
           }
-        )
       }
     )
+    .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error: error
+          });
+        }
+      )
   }
 
   dayNightFilter(data) {
@@ -139,7 +160,7 @@ export class DataService extends React.Component {
               <div className="card-text">
                 <div>{item.dt_txt.slice(0,10)}</div>
                 <div>{item.weather[0].description}</div>
-                <div>Temperature is {item.main.temp} F </div>
+                <div>Temperature is {Math.round(item.main.temp - 273.15)  } C </div>
                 <div>Athmospheric pressure is {item.main.pressure} mbar </div>
               </div>
             </div>
@@ -157,33 +178,26 @@ export class DataService extends React.Component {
   render() {
     const {
       isLoaded,
-      items,
     } = this.state;
-    if (this.state.error != null) {
-      return <div className="container-fluid data text-center">API Server is not responding </div>;
+    if (this.state.error && this.state.items.length === 0 ) {
+      return <div className="container-fluid data text-center">unable to get your GeoLocation</div>;
     } else if (!isLoaded) {
-      return (
-      <div className="text-center">
-          <div className="spinner-border" role="status">
-              <span className="sr-only">Loading...</span>
-          </div>
-      </div>);
-    } else if (!(_.isUndefined(items))) {
+        return (
+        <div className="text-center">
+            <div className="spinner-border" role="status">
+                <span className="sr-only"></span>
+            </div>
+        </div>);
+    } else {
         return (
           <div>
             <h4 className="cityName">
-              5 Days Weather Forecast {this.state.items.city.name}
+              5 Days Weather Forecast: {this.state.items.city.name}
             </h4>
             {this.renderForecast()}
           </div>
         )
       }
-      else {
-        return (
-          <div className="container-fluid data">
-            Unable to get your GeoLocation or server went wrong
-          </div> 
-        );
-      }
+
     }
 }
